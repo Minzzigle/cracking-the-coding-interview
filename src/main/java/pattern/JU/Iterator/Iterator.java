@@ -1,4 +1,4 @@
-package pattern.Iterator;
+package pattern.JU.Iterator;
 
 /**
  * Created by cha45 on 2017-04-09.

@@ -1,4 +1,4 @@
-package pattern.Iterator;
+package pattern.JU.Iterator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,12 +22,9 @@ public class IteratorServiceTest {
     @Autowired
     private IteratorService iteratorService;
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
     @Test
     public void findAllBookName() throws Exception {
+        // given
         BookShelf bookShelf = new BookShelf();
         bookShelf.appendBook(new Book("1"));
         bookShelf.appendBook(new Book("2"));
@@ -35,8 +32,31 @@ public class IteratorServiceTest {
         bookShelf.appendBook(new Book("4"));
         bookShelf.appendBook(new Book("5"));
 
+        // when
         List<String> result = iteratorService.findAllBookName(bookShelf);
 
+        // then
+        assertThat(result.get(0), is("1"));
+        assertThat(result.get(1), is("2"));
+        assertThat(result.get(2), is("3"));
+        assertThat(result.get(3), is("4"));
+        assertThat(result.get(4), is("5"));
+    }
+
+    @Test
+    public void findAllBookNameByBookShelfList() throws Exception {
+        // given
+        BookShelfList bookShelfList = new BookShelfList();
+        bookShelfList.appendBook(new Book("1"));
+        bookShelfList.appendBook(new Book("2"));
+        bookShelfList.appendBook(new Book("3"));
+        bookShelfList.appendBook(new Book("4"));
+        bookShelfList.appendBook(new Book("5"));
+
+        // when
+        List<String> result = iteratorService.findAllBookName(bookShelfList);
+
+        // then
         assertThat(result.get(0), is("1"));
         assertThat(result.get(1), is("2"));
         assertThat(result.get(2), is("3"));

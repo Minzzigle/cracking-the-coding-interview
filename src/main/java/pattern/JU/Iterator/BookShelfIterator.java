@@ -1,13 +1,13 @@
-package pattern.Iterator;
+package pattern.JU.Iterator;
 
 /**
  * Created by cha45 on 2017-04-09.
  */
 public class BookShelfIterator implements Iterator{
-    private BookShelf bookShelf;
+    private BookShelfInterface bookShelf;
     private int index;
 
-    public BookShelfIterator(BookShelf bookShelf) {
+    public BookShelfIterator(BookShelfInterface bookShelf) {
         this.bookShelf = bookShelf;
         this.index = 0;
     }

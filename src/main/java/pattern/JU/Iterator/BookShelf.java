@@ -1,4 +1,4 @@
-package pattern.Iterator;
+package pattern.JU.Iterator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by cha45 on 2017-04-09.
  */
-public class BookShelf implements Aggregate{
+public class BookShelf implements BookShelfInterface {
     List<Book> books = new ArrayList<>();
     private int last = 0;
 

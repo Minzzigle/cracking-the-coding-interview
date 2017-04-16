@@ -1,4 +1,4 @@
-package pattern.Iterator;
+package pattern.JU.Iterator;
 
 import org.springframework.stereotype.Service;
 
@@ -10,8 +10,12 @@ import java.util.List;
  */
 @Service
 public class IteratorService {
-    public List<String> findAllBookName(BookShelf bookShelf) {
+    public List<String> findAllBookName(Aggregate bookShelf) {
         Iterator iterator = bookShelf.iterator();
+        return generateBookNameList(iterator);
+    }
+
+    private List<String> generateBookNameList(Iterator iterator) {
         List<String> result = new ArrayList<>();
         while (iterator.hasNext()) {
             Book book = (Book)iterator.next();
