@@ -20,6 +20,4 @@ public class PrototypeService {
 	public Product create(String protoName) {
 		return ((Product)showcase.get(protoName)).createClone();
 	}
-
-
 }

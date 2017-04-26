@@ -46,6 +46,7 @@ public class PrototypeServiceTest {
 		assertThat(result.use(TEST), is("*TEST*"));
 		assertThat(result.getClass().toString(), is(starBox.getClass().toString()));
 		assertThat(result.hashCode(), not(starBox.hashCode()));
+		assertThat(result.maps.hashCode(), is(starBox.maps.hashCode()));
 	}
 
 	@Test
@@ -59,5 +60,6 @@ public class PrototypeServiceTest {
 		assertThat(result.use(TEST), is("_TEST_"));
 		assertThat(result.getClass().toString(), is(underlineBox.getClass().toString()));
 		assertThat(result.hashCode(), not(underlineBox.hashCode()));
+		assertThat(result.maps.hashCode(), is(underlineBox.maps.hashCode()));
 	}
 }
