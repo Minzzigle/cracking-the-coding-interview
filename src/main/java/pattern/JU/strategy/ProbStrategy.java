@@ -15,29 +15,35 @@ public class ProbStrategy implements Strategy{
 	private Random random;
 	private Hand prevHand;
 	private Hand currentHand;
-	private int[][] history = {
-		{1,1,1},
-		{1,1,1},
-		{1,1,1}
-	};
+	private Map<Hand, Map<Hand, Integer>> history = new HashMap<>();
+
+	public ProbStrategy() {
+		initHistory();
+	}
+
+	private void initHistory() {
+		for(Hand h : Hand.values()) {
+			for(Hand h2 : Hand.values()) {
+				Map<Hand, Integer> map = new HashMap<>();
+				map.put(h2, 0);
+				history.put(h, map);
+			}
+		}
+	}
 
 	@Override
 	public Hand nextHand() {
-		int[] list = history[prevHand.getValue()];
-		int sum = 0;
-		for (int i = 0; i < list.length; i++) {
-			sum += list[i];
-		}
+		Map<Hand, Integer> prevHistory = history.get(prevHand);
 
-		int bet = random.nextInt(sum);
-		Hand hand;
-		if (bet < history[prevHand.getValue()][0]) {
-			hand = Hand.findByValue(0);
-		} else if (bet < history[prevHand.getValue()][0] + history[prevHand.getValue()][1]) {
-			hand = Hand.findByValue(1);
-		} else {
-			hand = Hand.findByValue(2);
-		}
+//		int bet = random.nextInt(sum);
+//		Hand hand;
+//		if (bet < history[prevHand.getValue()][0]) {
+//			hand = Hand.findByValue(0);
+//		} else if (bet < history[prevHand.getValue()][0] + history[prevHand.getValue()][1]) {
+//			hand = Hand.findByValue(1);
+//		} else {
+//			hand = Hand.findByValue(2);
+//		}
 
 		prevHand = currentHand;
 		currentHand = hand;
@@ -46,14 +52,20 @@ public class ProbStrategy implements Strategy{
 
 	@Override
 	public void study(boolean win) {
-		int prevValue = prevHand.getValue();
+		Map<Hand, Integer> prevHistory = history.get(prevHand);
 
 		if(win) {
-			history[prevValue][currentHand.getValue()]++;
+			Integer value = prevHistory.get(currentHand);
+			prevHistory.put(currentHand, ++value);
+			return;
 		}
 
-		history[prevValue][(currentHand.getValue() + 1) % 3]++;
-		history[prevValue][(currentHand.getValue() + 2) % 3]++;
+		List<Hand> restHands = prevHand.getRestHands();
+
+		for(Hand h : restHands) {
+			Integer value = prevHistory.get(h);
+			prevHistory.put(h, ++value);
+		}
 		return;
 	}
 }
