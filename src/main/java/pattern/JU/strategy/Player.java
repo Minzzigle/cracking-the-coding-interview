@@ -13,7 +13,7 @@ public class Player {
 	private int gameCount;
 	private int loseCount;
 
-	public Player(Strategy strategy, String name) {
+	public Player(String name, Strategy strategy) {
 		this.name = name;
 		this.strategy = strategy;
 	}
@@ -42,4 +42,7 @@ public class Player {
 		return "[" + name + ":" + gameCount + "game, " + winCount + " win, " + loseCount + " lose]";
 	}
 
+	public String getName() {
+		return name;
+	}
 }

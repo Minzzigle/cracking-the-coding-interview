@@ -11,18 +11,16 @@ import java.util.List;
  * @since 2017. 04. 30.
  */
 public enum Hand {
-	ROCK(0, "주먹", Arrays.asList(Hand.SCISSORS, Hand.PAPER)),
-	SCISSORS(1, "가위", Arrays.asList(Hand.ROCK, Hand.PAPER)),
-	PAPER(2, "보", Arrays.asList(Hand.SCISSORS, Hand.ROCK));
+	ROCK(0, "주먹"),
+	SCISSORS(1, "가위"),
+	PAPER(2, "보");
 
 	private final int value;
 	private final String desc;
-	private final List<Hand> restHands;
 
-	private Hand(int value, String desc, List<Hand> restHands) {
+	private Hand(int value, String desc) {
 		this.value = value;
 		this.desc = desc;
-		this.restHands  = restHands;
 	}
 
 	public int getValue() {
@@ -33,8 +31,16 @@ public enum Hand {
 		return desc;
 	}
 
-	public List<Hand> getRestHands() {
-		return restHands;
+	public List<Hand> getRestHands(Hand h) {
+		Hand[] list = Hand.values();
+		List<Hand> result = new ArrayList<>();
+		for (int i =0; i<list.length; i++) {
+			if(list[i] != h) {
+				result.add(list[i]);
+			}
+		}
+
+		return result;
 	}
 
 	public static Hand findByValue(int value) {
@@ -50,7 +56,7 @@ public enum Hand {
 	}
 
 	private boolean isWin(Hand h) {
-		return (getValue() + 1) % 3 == h.getValue();
+		return ((getValue() + 1) % 3) == h.getValue();
 	}
 
 	public boolean isStrongerThan(Hand h) {

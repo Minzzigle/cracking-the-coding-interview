@@ -9,9 +9,9 @@ import java.util.Random;
  * @since 2017. 04. 30.
  */
 public class WinningStrategy implements Strategy{
-	private Random random;
+	private Random random = new Random();
 	private boolean won;
-	private Hand prevHand;
+	private Hand prevHand = Hand.ROCK;
 
 
 	@Override

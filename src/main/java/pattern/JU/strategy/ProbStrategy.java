@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * ProbStrategy
@@ -12,9 +13,9 @@ import java.util.Random;
  * @since 2017. 04. 30.
  */
 public class ProbStrategy implements Strategy{
-	private Random random;
-	private Hand prevHand;
-	private Hand currentHand;
+	private Random random = new Random();
+	private Hand prevHand = Hand.ROCK;
+	private Hand currentHand = Hand.ROCK;
 	private Map<Hand, Map<Hand, Integer>> history = new HashMap<>();
 
 	public ProbStrategy() {
@@ -23,11 +24,11 @@ public class ProbStrategy implements Strategy{
 
 	private void initHistory() {
 		for(Hand h : Hand.values()) {
+			Map<Hand, Integer> map = new HashMap<>();
 			for(Hand h2 : Hand.values()) {
-				Map<Hand, Integer> map = new HashMap<>();
-				map.put(h2, 0);
-				history.put(h, map);
+				map.put(h2, 1);
 			}
+			history.put(h, map);
 		}
 	}
 
@@ -35,18 +36,25 @@ public class ProbStrategy implements Strategy{
 	public Hand nextHand() {
 		Map<Hand, Integer> prevHistory = history.get(prevHand);
 
-//		int bet = random.nextInt(sum);
-//		Hand hand;
-//		if (bet < history[prevHand.getValue()][0]) {
-//			hand = Hand.findByValue(0);
-//		} else if (bet < history[prevHand.getValue()][0] + history[prevHand.getValue()][1]) {
-//			hand = Hand.findByValue(1);
-//		} else {
-//			hand = Hand.findByValue(2);
-//		}
+		int sum = prevHistory.values().stream().mapToInt(i -> i.intValue()).sum();
+		int bet = random.nextInt(sum);
+
+		Hand hand = findHandByBet(bet);
 
 		prevHand = currentHand;
 		currentHand = hand;
+		return hand;
+	}
+
+	private Hand findHandByBet(int bet) {
+		Hand hand;
+		if (bet < history.get(currentHand).get(Hand.ROCK)) {
+			hand = Hand.ROCK;
+		} else if (bet < history.get(currentHand).get(Hand.ROCK) + history.get(currentHand).get(Hand.SCISSORS)) {
+			hand = Hand.SCISSORS;
+		} else {
+			hand = Hand.PAPER;
+		}
 		return hand;
 	}
 
@@ -57,15 +65,15 @@ public class ProbStrategy implements Strategy{
 		if(win) {
 			Integer value = prevHistory.get(currentHand);
 			prevHistory.put(currentHand, ++value);
-			return;
+		} else {
+			List<Hand> restHands = prevHand.getRestHands(prevHand);
+
+			for(Hand h : restHands) {
+				Integer value = prevHistory.get(h);
+				prevHistory.put(h, ++value);
+			}
 		}
 
-		List<Hand> restHands = prevHand.getRestHands();
-
-		for(Hand h : restHands) {
-			Integer value = prevHistory.get(h);
-			prevHistory.put(h, ++value);
-		}
-		return;
+		history.put(prevHand, prevHistory);
 	}
 }
