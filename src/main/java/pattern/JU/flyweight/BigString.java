@@ -17,6 +17,14 @@ public class BigString {
 		}
 	}
 
+	public BigString(String input, boolean isSync) {
+		bigChars = new BigChar[input.length()];
+		BigCharFactory factory = BigCharFactory.newInstance();
+		for(int i = 0; i<input.length(); i++) {
+			this.bigChars[i] = factory.getBigCharWithoutSync(input.charAt(i));
+		}
+	}
+
 	public void print() {
 		for(int i =0; i<bigChars.length; i++) {
 			bigChars[i].print();

@@ -31,5 +31,14 @@ public class BigCharFactory {
 		return bc;
 	}
 
+	public BigChar getBigCharWithoutSync(char charName) {
+		BigChar bc = pool.get("" + charName);
+		if (bc == null) {
+			System.out.println("bc is null. charName is : " + charName);
+			bc = new BigChar(charName);
+			pool.put("" + charName, bc);
+		}
 
+		return bc;
+	}
 }

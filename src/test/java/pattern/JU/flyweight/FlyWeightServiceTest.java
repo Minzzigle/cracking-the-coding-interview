@@ -37,5 +37,53 @@ public class FlyWeightServiceTest {
 		}
 	}
 
+	@Test
+	public void findBigStringWithoutSync() throws Exception {
+		// given
+		String input = "11223344556677889900--";
+		Thread thread1 = new Thread(() -> {
+			flyWeightService.findBigStringWithoutSync(input).getBigChars();
+		});
+		Thread thread2 = new Thread(() -> {
+			flyWeightService.findBigStringWithoutSync(input).getBigChars();
+		});
+		Thread thread3 = new Thread(() -> {
+			flyWeightService.findBigStringWithoutSync(input).getBigChars();
+		});
+		Thread thread4 = new Thread(() -> {
+			flyWeightService.findBigStringWithoutSync(input).getBigChars();
+		});
+		Thread thread5 = new Thread(() -> {
+			flyWeightService.findBigStringWithoutSync(input).getBigChars();
+		});
+		Thread thread6 = new Thread(() -> {
+			flyWeightService.findBigStringWithoutSync(input).getBigChars();
+		});
+		Thread thread7 = new Thread(() -> {
+			flyWeightService.findBigStringWithoutSync(input).getBigChars();
+		});
+		Thread thread8 = new Thread(() -> {
+			flyWeightService.findBigStringWithoutSync(input).getBigChars();
+		});
+		Thread thread9 = new Thread(() -> {
+			flyWeightService.findBigStringWithoutSync(input).getBigChars();
+		});
+		Thread thread10 = new Thread(() -> {
+			flyWeightService.findBigStringWithoutSync(input).getBigChars();
+		});
 
+		// when
+		thread1.start();
+		thread2.start();
+		thread3.start();
+		thread4.start();
+		thread5.start();
+		thread6.start();
+		thread7.start();
+		thread8.start();
+		thread9.start();
+		thread10.start();
+
+		// then
+	}
 }

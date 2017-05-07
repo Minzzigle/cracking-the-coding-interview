@@ -17,4 +17,10 @@ public class FlyWeightService {
 
 		return bigString;
 	}
+
+	public BigString findBigStringWithoutSync(String input) {
+		BigString bigString = new BigString(input, false);
+
+		return bigString;
+	}
 }
