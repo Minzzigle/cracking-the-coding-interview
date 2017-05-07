@@ -1,4 +1,4 @@
-package pattern.JU.Composite;
+package pattern.JU.composite;
 
 /**
  * Created by cha45 on 2017-05-01.
