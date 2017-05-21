@@ -60,7 +60,7 @@ public class AdapterServiceTest {
         // given
 
         // when
-        String result = adapterService.printStrongWithDelgate();
+        String result = adapterService.printStrongWithDelegate();
 
         // then
         assertThat(result, is(STRONG_STRING));

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdapterService {
     private PrintBanner printBanner = new PrintBanner("input");
+    private Banner banner = new Banner("nput");
 
     public String printWeakWithInheritance() {
         return printBanner.showWithParen();
@@ -18,11 +19,11 @@ public class AdapterService {
     }
 
     public String printWeakWithDelegate() {
-        return null;
+        return banner.showWithParen();
     }
 
-    public String printStrongWithDelgate() {
-        return null;
+    public String printStrongWithDelegate() {
+        return banner.showWithAster();
     }
 
 }
