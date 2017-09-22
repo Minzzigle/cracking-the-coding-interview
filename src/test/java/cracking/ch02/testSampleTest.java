@@ -8,7 +8,7 @@ import cracking.Application;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
-public class sumListTest {
+public class testSampleTest {
     @Test
     public void test() {
         System.out.println("hello, cracking!");
