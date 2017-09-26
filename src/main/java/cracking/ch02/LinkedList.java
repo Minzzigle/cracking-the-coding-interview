@@ -16,7 +16,19 @@ public class LinkedList {
 	public LinkedList() {
 	}
 
-	void appendToTail(int d) {
+	public void appendToTailNode(Node end) {
+		Node n = head;
+		if(head == null) {
+			head = end;
+			return;
+		}
+		while(n.next != null) {
+			n = n.next;
+		}
+		n.next = end;
+	}
+
+	public void appendToTail(int d) {
 		Node end = new Node(d);
 		Node n = head;
 		if(head == null) {
@@ -29,7 +41,7 @@ public class LinkedList {
 		n.next = end;
 	}
 
-	void deleteNode(int d) {
+	public void deleteNode(int d) {
 		Node n = head;
 		if(n.data == d) {
 			head = head.next;
@@ -43,7 +55,7 @@ public class LinkedList {
 		}
 	}
 
-	String printAll() {
+	public String print() {
 		Node n = head;
 		String result = "";
 		while(n != null) {

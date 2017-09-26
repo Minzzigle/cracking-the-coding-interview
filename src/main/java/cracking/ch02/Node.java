@@ -7,8 +7,8 @@ package cracking.ch02;
  * @since 2017. 09. 22.
  */
 public class Node {
-	Node next = null;
-	int data;
+	public Node next = null;
+	public int data;
 
 	public Node(int data) {
 		this.data = data;

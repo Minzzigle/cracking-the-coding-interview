@@ -1,19 +1,16 @@
-package cracking.ch02;
+package cracking.ch02.five;
 
-import sun.awt.image.ImageWatched;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import cracking.ch02.LinkedList;
+import cracking.ch02.Node;
 
 /**
- * SumList_02_05
+ * SumList
  *
  * @author jongUn
  * @since 2017. 09. 22.
  *
  */
-public class SumList_02_05 {
+public class SumList {
 	public LinkedList solve(LinkedList list1, LinkedList list2) {
 		if(list1.head == null || list2.head == null) {
 			return null;

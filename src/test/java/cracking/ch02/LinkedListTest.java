@@ -29,7 +29,7 @@ public class LinkedListTest {
 		// given
 
 		// when
-		String result = list.printAll();
+		String result = list.print();
 
 		// then
 		assertThat(result, is("12345"));
@@ -44,7 +44,7 @@ public class LinkedListTest {
 		list.deleteNode(3);
 
 		// then
-		assertThat(list.printAll(), is("1 2 4 5 "));
+		assertThat(list.print(), is("1 2 4 5 "));
 
 	}
 

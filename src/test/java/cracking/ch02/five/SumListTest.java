@@ -1,19 +1,22 @@
-package cracking.ch02;
+package cracking.ch02.five;
 
+import cracking.ch02.LinkedList;
+import cracking.ch02.Node;
+import cracking.ch02.five.SumList;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 /**
- * SumList_02_05Test
+ * SumListTest
  *
  * @author jongUn
  * @since 2017. 09. 22.
  */
-public class SumList_02_05Test {
+public class SumListTest {
 	@Test
-	public void solve() throws Exception {
+	public void solve1() throws Exception {
 		// given
 		LinkedList list1 = new LinkedList(new Node(7));
 		list1.appendToTail(1);
@@ -25,11 +28,11 @@ public class SumList_02_05Test {
 
 
 		// when
-		SumList_02_05 sumList_02_05 = new SumList_02_05();
-		LinkedList result = sumList_02_05.solve(list1, list2);
+		SumList sumList_ = new SumList();
+		LinkedList result = sumList_.solve(list1, list2);
 
 		// then
-		assertThat(result.printAll(), is("912"));
+		assertThat(result.print(), is("912"));
 	}
 
 }
