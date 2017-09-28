@@ -2,6 +2,7 @@ package cracking.ch02.seven;
 
 import cracking.ch02.LinkedList;
 import cracking.ch02.Node;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -11,12 +12,15 @@ import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IntersectionTest {
+    private LinkedList l1;
+    private LinkedList l2;
+    private Node sameNode;
+
     @InjectMocks
     public Intersection intersection;
 
-    @Test
-    public void solve1() throws Exception {
-        // given
+    @Before
+    public void before() {
         Node sameNode = new Node(3);
         LinkedList l1 = new LinkedList();
         l1.appendToTail(2);
@@ -27,8 +31,30 @@ public class IntersectionTest {
         l2.appendToTail(5);
         l2.appendToTailNode(sameNode);
 
+        this.l1 = l1;
+        this.l2 = l2;
+        this.sameNode = sameNode;
+    }
+
+    @Test
+    public void solve1() throws Exception {
+        // given
+
         // when
         Node result = intersection.solve1(l1, l2);
+
+        // then
+        if(result != sameNode) {
+            fail();
+        }
+    }
+
+    @Test
+    public void solve2() throws Exception {
+        // given
+
+        // when
+        Node result = intersection.solve2(l1, l2);
 
         // then
         if(result != sameNode) {

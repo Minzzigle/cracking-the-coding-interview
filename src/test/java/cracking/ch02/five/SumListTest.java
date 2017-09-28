@@ -28,8 +28,8 @@ public class SumListTest {
 
 
 		// when
-		SumList sumList_ = new SumList();
-		LinkedList result = sumList_.solve(list1, list2);
+		SumList sumList = new SumList();
+		LinkedList result = sumList.solve(list1, list2);
 
 		// then
 		assertThat(result.print(), is("912"));
