@@ -1,6 +1,5 @@
-package cracking.ch03.four;
+package cracking.ch03;
 
-import cracking.ch03.Queue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,18 +7,18 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 /**
- * MyQueueTest
+ * QueueTest
  *
  * @author jongUn
  * @since 2017. 09. 29.
  */
-public class MyQueueTest {
-	private MyQueue<Integer> myQueue = new MyQueue<>();
+public class QueueTest {
+	private Queue<Integer> queue = new Queue<>();
 
 	@Before
 	public void before() {
 		for(int i = 0; i<10; i++) {
-			myQueue.add(i);
+			queue.add(i);
 		}
 	}
 
@@ -28,8 +27,8 @@ public class MyQueueTest {
 		// given
 
 		// when
-		Integer result = myQueue.remove();
-		Integer result2 = myQueue.remove();
+		Integer result = queue.remove();
+		Integer result2 = queue.remove();
 
 		// then
 		assertThat(result, is(0));
@@ -41,8 +40,8 @@ public class MyQueueTest {
 		// given
 
 		// when
-		Integer result = myQueue.peek();
-		Integer result2 = myQueue.peek();
+		Integer result = queue.peek();
+		Integer result2 = queue.peek();
 
 		// then
 		assertThat(result, is(0));
@@ -55,7 +54,7 @@ public class MyQueueTest {
 		// given
 
 		// when
-		boolean result = myQueue.isEmpty();
+		boolean result = queue.isEmpty();
 		Queue<Integer> q = new Queue<>();
 		boolean result2 = q.isEmpty();
 
@@ -64,4 +63,5 @@ public class MyQueueTest {
 		assertThat(result2, is(true));
 
 	}
+
 }
