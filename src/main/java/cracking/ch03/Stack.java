@@ -16,6 +16,17 @@ import java.util.EmptyStackException;
  */
 public class Stack<T> {
 	private StackNode top;
+	private Integer upperSize = null;
+	private int size = 0;
+
+	public Stack(int upperSize) {
+		this.upperSize = upperSize;
+	}
+
+	public Stack() {
+
+	}
+
 	public T pop() {
 		if (top == null) {
 			throw new EmptyStackException();
@@ -23,13 +34,21 @@ public class Stack<T> {
 
 		T item = top.data;
 		top = top.next;
+		size--;
+
 		return item;
 	}
 
 	public void push(T item) {
+		if(upperSize != null && size == upperSize) {
+			throw new RuntimeException("stack is full");
+		}
+
 		StackNode t = new StackNode(item);
 		t.next = top;
 		top = t;
+
+		size++;
 	}
 
 	public T peek() {
