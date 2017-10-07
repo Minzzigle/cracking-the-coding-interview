@@ -2,9 +2,7 @@ package cracking.ch02.seven;
 
 import cracking.ch02.LinkedList;
 import cracking.ch02.Node;
-import sun.awt.image.ImageWatched;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
