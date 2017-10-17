@@ -56,4 +56,63 @@ public class Intersection {
 
         return null;
     }
+
+    /**
+     * Node를 방문하는 visited나, Map에 hashcode를 저장하는 방법을 사용하지 않는 solution.
+     * 정석적인 방법이다.
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public Node solve3(LinkedList l1, LinkedList l2) {
+        if(l1 == null || l2 == null) {
+            return null;
+        }
+
+        int length1 = getLength(l1);
+        int length2 = getLength(l2);
+
+        Node n1 = null;
+        Node n2 = null;
+
+        if(length1 > length2) {
+            n1 = movePointer(l1, length1, length2);
+            n2 = l2.head;
+        } else if(length1 == length2){
+            n1 = l1.head;
+            n2 = l2.head;
+        } else {
+            n1 = l1.head;
+            n2 = movePointer(l2, length2, length1);
+        }
+
+        while(n1 != n2) {
+            n1 = n1.next;
+            n2 = n2.next;
+        }
+
+        return n1;
+
+    }
+
+    private Node movePointer(LinkedList l1, int longer, int shorter) {
+        Node node = l1.head;
+        while(longer > shorter) {
+            node = node.next;
+            longer--;
+        }
+
+        return node;
+    }
+
+    private int getLength(LinkedList l1) {
+        int length = 0;
+        Node n = l1.head;
+        while(n != null) {
+            n = n.next;
+            length++;
+        }
+
+        return length;
+    }
 }

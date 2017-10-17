@@ -62,4 +62,17 @@ public class IntersectionTest {
         }
     }
 
+    @Test
+    public void solve3() throws Exception {
+        // given
+
+        // when
+        Node result = intersection.solve3(l1, l2);
+
+        // then
+        if(result != sameNode) {
+            fail();
+        }
+    }
+
 }
