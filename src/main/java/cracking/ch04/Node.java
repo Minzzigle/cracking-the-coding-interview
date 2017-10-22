@@ -7,8 +7,14 @@ public class Node {
     public Node[] children = new Node[CHILDREN_SIZE];
     public VisitedType visited;
     public Node next;
+    public Integer value;
 
     public Node(String name) {
         this.name = name;
+    }
+
+    public Node(String name, Integer value) {
+        this.name = name;
+        this.value = value;
     }
 }

@@ -25,7 +25,7 @@ public class TreeDepthTest {
 	@Test
 	public void checkBalanced_false() throws Exception {
 		// given
-		Node head = makeUnbalaceTree();
+		Node head = makeUnbalancedTree();
 
 		// when
 		boolean result = treeDepth.checkBalanced(head);
@@ -37,7 +37,7 @@ public class TreeDepthTest {
 	@Test
 	public void checkBalanced_true() throws Exception {
 		// given
-		Node head = makeBalaceTree();
+		Node head = makeBalancedTree();
 
 		// when
 		boolean result = treeDepth.checkBalanced(head);
@@ -46,7 +46,7 @@ public class TreeDepthTest {
 		assertThat(result, is(true));
 	}
 
-	private Node makeUnbalaceTree() {
+	private Node makeUnbalancedTree() {
 		Node node1 = new Node("1");
 		Node node2 = new Node("2");
 		Node node3 = new Node("3");
@@ -66,7 +66,7 @@ public class TreeDepthTest {
 		return node1;
 	}
 
-	private Node makeBalaceTree() {
+	private Node makeBalancedTree() {
 		Node node1 = new Node("1");
 		Node node2 = new Node("2");
 		Node node3 = new Node("3");
