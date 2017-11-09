@@ -7,14 +7,21 @@ public class RightBST {
         if (root == null) {
             return 0;
         }
-
+        System.out.println("root" + root.data);
         TreeNode leftChild = root.getLeftChild();
+
+        if (leftChild == null) {
+            return 0;
+        }
         int currentData = root.getData();
         if (leftChild.getData() > currentData) {
             return -1;
         }
 
         TreeNode rightChild = root.getRightChild();
+        if (rightChild == null) {
+            return 0;
+        }
         if (rightChild.getData() < currentData) {
             return -1;
         }
