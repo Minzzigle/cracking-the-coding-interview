@@ -3,7 +3,12 @@ package cracking.ch04;
 public class TreeNode {
     public TreeNode rightChild = null;
     public TreeNode leftChild = null;
+    public TreeNode parent = null;
     public int data;
+
+    public TreeNode() {
+
+    }
 
     public TreeNode (int data) {
         this.data = data;
