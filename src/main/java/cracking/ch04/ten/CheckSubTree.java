@@ -1,6 +1,6 @@
 package cracking.ch04.ten;
 
-import cracking.ch04.Node;
+import cracking.ch04.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,52 +12,50 @@ import java.util.List;
  * @since 2017. 11. 09.
  */
 public class CheckSubTree {
-	public boolean check(Node head, Node subHead) {
+	public boolean check(TreeNode head, TreeNode subHead) {
 		if(head == null) {
 			return false;
 		}
 
-		Node[] children = head.children;
-
-		boolean left = check(children[0], subHead);
+		boolean left = check(head.leftChild, subHead);
 
 		if(left == true) {
 			return true;
 		}
 
-		boolean right = check(children[1], subHead);
+		boolean right = check(head.rightChild, subHead);
 
 		if(right == true) {
 			return true;
 		}
 
-		List<Integer> inOrder = makeInOrder(head);
+		List<Integer> preOrder = makePreOrder(head);
 
-		// 외부 함수에서 한 번만 InOrder를 계산해서 이 함수에 흘려주면 이 연산을 재귀마다 수행할 필요가 없다
-		// targetNode의 InOrder는 항상 동일하기 때문이다.
+		// 외부 함수에서 한 번만 preOrder 계산해서 이 함수에 흘려주면 이 연산을 재귀마다 수행할 필요가 없다
+		// targetNode의 preOrder는 항상 동일하기 때문이다.
 		List<Integer> targetInOrder = new ArrayList<>();
-		getInOrder(subHead, targetInOrder);
+		getPreOrder(subHead, targetInOrder);
 
-		return isSame(inOrder, targetInOrder);
+		return isSame(preOrder, targetInOrder);
 	}
 
-	private List<Integer> makeInOrder(Node head) {
-		List<Integer> leftInOrder = new ArrayList<>();
-		getInOrder(head.children[0], leftInOrder);
+	private List<Integer> makePreOrder(TreeNode head) {
+		List<Integer> leftPreOrder = new ArrayList<>();
+		leftPreOrder.add(head.data);
+		getPreOrder(head.leftChild, leftPreOrder);
 		List<Integer> rightInOrder = new ArrayList<>();
-		getInOrder(head.children[1], rightInOrder);
-		leftInOrder.add(head.value);
-		leftInOrder.addAll(rightInOrder);
-		return leftInOrder;
+		getPreOrder(head.rightChild, rightInOrder);
+		leftPreOrder.addAll(rightInOrder);
+		return leftPreOrder;
 	}
 
-	private boolean isSame(List<Integer> leftInOrder, List<Integer> subTree) {
-		if(leftInOrder.size() != subTree.size()) {
+	private boolean isSame(List<Integer> preOrder, List<Integer> subTree) {
+		if(preOrder.size() != subTree.size()) {
 			return false;
 		}
 
-		for(int i = 0; i<leftInOrder.size(); i++) {
-			if(leftInOrder.get(i) != subTree.get(i)) {
+		for(int i = 0; i<preOrder.size(); i++) {
+			if((int)preOrder.get(i) != (int)(subTree.get(i))) {
 				return false;
 			}
 		}
@@ -65,13 +63,14 @@ public class CheckSubTree {
 		return true;
 	}
 
-	private void getInOrder(Node child, List<Integer> result) {
+	private void getPreOrder(TreeNode child, List<Integer> result) {
 		if(child == null) {
+			result.add(Integer.MIN_VALUE);
 			return;
 		}
 
-		getInOrder(child.children[0], result);
-		result.add(child.value);
-		getInOrder(child.children[1], result);
+		result.add(child.data);
+		getPreOrder(child.leftChild, result);
+		getPreOrder(child.rightChild, result);
 	}
 }

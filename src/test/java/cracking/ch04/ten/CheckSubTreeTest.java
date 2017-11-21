@@ -1,6 +1,7 @@
 package cracking.ch04.ten;
 
 import cracking.ch04.Node;
+import cracking.ch04.TreeNode;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -18,8 +19,8 @@ public class CheckSubTreeTest {
 	@Test
 	public void check() throws Exception {
 		// given
-		Node head = makeBalancedTree();
-		Node subHead = makeSubTree();
+		TreeNode head = makeBalancedTree();
+		TreeNode subHead = makeSubTree();
 
 		// when
 		boolean result = checkSubTree.check(head, subHead);
@@ -31,8 +32,8 @@ public class CheckSubTreeTest {
 	@Test
 	public void check_fail() throws Exception {
 		// given
-		Node head = makeBalancedTree();
-		Node subHead = makeNotSubTree();
+		TreeNode head = makeBalancedTree();
+		TreeNode subHead = makeNotSubTree();
 
 		// when
 		boolean result = checkSubTree.check(head, subHead);
@@ -41,38 +42,45 @@ public class CheckSubTreeTest {
 		assertThat(result, is(false));
 	}
 
-	private Node makeBalancedTree() {
-		Node node2 = new Node("2", 2);
-		Node node3 = new Node("3", 3);
-		Node node4 = new Node("4", 4);
-		Node node5 = new Node("5", 5);
-		Node node6 = new Node("6", 6);
-		Node node7 = new Node("7", 7);
-		Node node8 = new Node("8", 8);
+	private TreeNode makeBalancedTree() {
+		TreeNode node2 = new TreeNode(2);
+		TreeNode node3 = new TreeNode(3);
+		TreeNode node4 = new TreeNode(4);
+		TreeNode node5 = new TreeNode(5);
+		TreeNode node6 = new TreeNode(6);
+		TreeNode node7 = new TreeNode(7);
+		TreeNode node8 = new TreeNode(8);
 
-		node5.children = new Node[]{node3, node7};
-		node3.children = new Node[]{node2, node4};
-		node7.children = new Node[]{node6, node8};
+		node5.leftChild = node3;
+		node5.rightChild = node7;
+
+		node3.leftChild = node2;
+		node3.rightChild = node4;
+
+		node7.leftChild = node6;
+		node7.rightChild = node8;
 
 		return node5;
 	}
 
-	private Node makeSubTree() {
-		Node node6 = new Node("6", 6);
-		Node node7 = new Node("7", 7);
-		Node node8 = new Node("8", 8);
+	private TreeNode makeSubTree() {
+		TreeNode node6 = new TreeNode(6);
+		TreeNode node7 = new TreeNode(7);
+		TreeNode node8 = new TreeNode(8);
 
-		node7.children = new Node[]{node6, node8};
+		node7.leftChild = node6;
+		node7.rightChild = node8;
 
 		return node7;
 	}
 
-	private Node makeNotSubTree() {
-		Node node1 = new Node("1", 1);
-		Node node2 = new Node("2", 2);
-		Node node3 = new Node("3", 3);
+	private TreeNode makeNotSubTree() {
+		TreeNode node1 = new TreeNode(1);
+		TreeNode node2 = new TreeNode(2);
+		TreeNode node3 = new TreeNode(3);
 
-		node1.children = new Node[]{node2, node3};
+		node1.leftChild = node2;
+		node1.rightChild = node3;
 
 		return node1;
 	}
