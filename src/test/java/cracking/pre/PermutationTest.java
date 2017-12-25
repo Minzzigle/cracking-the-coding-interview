@@ -8,7 +8,7 @@ public class PermutationTest {
     @Test
     public void permutation() throws Exception {
         Permutation permutation = new Permutation();
-        permutation.permutation("abc");
+        permutation.perm("abc");
     }
 
 }

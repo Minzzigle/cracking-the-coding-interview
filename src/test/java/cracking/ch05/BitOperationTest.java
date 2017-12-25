@@ -36,10 +36,11 @@ public class BitOperationTest {
         // given
 
         // when
-        String result = bitOperation.toBit(Integer.MIN_VALUE);
+        String result = bitOperation.toBit(-1);
 
         // then
         assertThat(result.length(), is(32));
+        System.out.println(result);
         assertThat(result, is("10000000000000000000000000000000"));
     }
 
