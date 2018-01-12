@@ -13,10 +13,7 @@ import java.util.List;
 public class Step {
 	public void step(int remain, List<Integer> step) {
 		if(remain == 0) {
-			for(int i = 0; i<step.size(); i++) {
-				System.out.print(step.get(i) + " ");
-			}
-			System.out.println("");
+			printStep(step);
 			return;
 		}
 		for(int j = 1; j< 4; j++) {
@@ -28,4 +25,10 @@ public class Step {
 		}
 	}
 
+	private void printStep(List<Integer> step) {
+		for(int i = 0; i<step.size(); i++) {
+			System.out.print(step.get(i) + " ");
+		}
+		System.out.println("");
+	}
 }

@@ -11,18 +11,19 @@ public class Multiply {
 		if(b == 0) {
 			return 0;
 		}
-		int underValue = 0;
-		int idx = 0;
-		while(underValue <= b) {
-			underValue = (int)Math.pow(2, idx);
-			idx++;
+		int now = 1;
+		int pre = 0;
+		int pow = 0;
+		while(true) {
+			pre = now;
+			now = now << 1;
+			if(now > b) {
+				break;
+			}
+			pow++;
 		}
-		idx = idx - 2;
 
-		underValue = underValue >> 1;
-		return multiply(a, b - underValue) + (a << idx);
-
-
+		return multiply(a, b - pre) + (a << pow);
 	}
 
 }

@@ -1,7 +1,10 @@
 package cracking.ch08.four;
 
+import java.util.List;
+
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 /**
@@ -18,9 +21,12 @@ public class SubSetTest {
 		// given
 
 		// when
-		subSet.print("ab", "");
+		List<String> result = subSet.print("abc");
 
 		// then
+		assertThat(result.contains("a"), is(true));
+		assertThat(result.contains("b"), is(true));
+		assertThat(result.contains("ab"), is(true));
 
 	}
 

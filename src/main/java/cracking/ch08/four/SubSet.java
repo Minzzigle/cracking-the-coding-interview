@@ -1,24 +1,32 @@
 package cracking.ch08.four;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * SubSet
- * 현재 입력값의 모든 부분집합을 리턴하는 메서드. 순열을 출력하기 때문에, 순서가 다른 것도 다른 집합 원소로 간주한다.
+ * 현재 입력값의 모든 부분집합을 리턴하는 메서드.
  * input > "ab"
- * result > "a", "b", "ab", "ba"
+ * result > "a", "b", "ab"
  *
  * @author jongUn
  * @since 2018. 01. 10.
  */
 public class SubSet {
-	public void print(String input, String prefix) {
-		if (input.length() == 0) {
-			System.out.println(prefix);
-			return;
+	public List<String> print(String input) {
+		if(input.length() == 0) {
+			return new ArrayList();
 		}
-		System.out.println(prefix);
-		for (int i = 0; i < input.length(); i++) {
-			String rem = input.substring(0, i) + input.substring(i + 1);
-			print(rem, prefix + input.charAt(i));
+
+		List<String> result = print(input.substring(0, input.length() - 1));
+		Character target = input.charAt(input.length() - 1);
+
+		int now = result.size();
+		for(int i = 0; i<now; i++) {
+			result.add(result.get(i) + target);
 		}
+		result.add(String.valueOf(target));
+
+		return result;
 	}
 }

@@ -20,7 +20,7 @@ public class StepTest {
 		// given
 
 		// when
-		step.step(4, new ArrayList<>());
+		step.step(10, new ArrayList<>());
 
 		// then
 
