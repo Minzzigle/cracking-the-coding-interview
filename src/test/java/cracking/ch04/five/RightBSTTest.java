@@ -3,6 +3,9 @@ package cracking.ch04.five;
 import cracking.ch04.TreeNode;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class RightBSTTest {
@@ -52,7 +55,7 @@ public class RightBSTTest {
         //assertEquals(0, bst.checkBST(bst()));
 
         assertEquals(-1 , bst.checkBST(wrongBst()));
-
+        
     }
 
 }
