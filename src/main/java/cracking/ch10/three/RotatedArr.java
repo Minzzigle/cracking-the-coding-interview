@@ -24,8 +24,6 @@ public class RotatedArr {
         } else {
             return target;
         }
-
-        return 0;
     }
 
     private List<Integer> lastHalfArr(List<Integer> arr) {
