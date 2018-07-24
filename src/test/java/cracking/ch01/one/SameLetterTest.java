@@ -17,7 +17,7 @@ public class SameLetterTest {
 	@Test
 	public void hasSameLetter() {
 		// given
-		String input = "afhadab";
+		char [] input = "afhadab".toCharArray();
 
 		// when
 		boolean result = sameLetter.hasSameLetter(input);
@@ -29,7 +29,7 @@ public class SameLetterTest {
 	@Test
 	public void notHasSameLetter() {
 		// given
-		String input = "abcde";
+		char [] input = "abcde".toCharArray();
 
 		// when
 		boolean result = sameLetter.hasSameLetter(input);

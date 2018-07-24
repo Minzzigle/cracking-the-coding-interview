@@ -93,5 +93,34 @@ public class SameSentence {
 		return true;
 	}
 
+	/**
+	 * 아스키코드를 사용하여 두 문자열이 같은지 확인한다.
+	 * @param firstInput
+	 * @param secondInput
+	 * @return
+	 */
+	public boolean solveUsingAskii(char [] firstInput, char [] secondInput) {
+		if(firstInput.length != secondInput.length) {
+			return false;
+		}
+
+		int [] askii = new int[256];
+
+		for(int i =0; i<firstInput.length; i++) {
+			askii[(int)firstInput[i]]++;
+		}
+
+		for(int j = 0; j<secondInput.length; j++) {
+			askii[(int)secondInput[j]]--;
+		}
+		for(int k = 0; k<askii.length; k++) {
+			if(askii[k] < 0) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 
 }

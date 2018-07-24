@@ -61,4 +61,25 @@ public class SameSentenceTest {
 		// then
 		assertThat(result, is(false));
 	}
+
+	@Test
+	public void askii_same() {
+
+		// when
+		boolean result = sameSentence.solveUsingAskii(sameS1.toCharArray(), saneS2.toCharArray());
+
+		// then
+		assertThat(result, is(true));
+	}
+
+	@Test
+	public void askii_notSame() {
+		// given
+
+		// when
+		boolean result = sameSentence.solveUsingAskii(notSameS1.toCharArray(), notSameS2.toCharArray());
+
+		// then
+		assertThat(result, is(false));
+	}
 }
