@@ -10,14 +10,17 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
 
-@RunWith(MockitoJUnitRunner.class)
 public class IntersectionTest {
     private LinkedList l1;
     private LinkedList l2;
     private Node sameNode;
 
-    @InjectMocks
     public Intersection intersection;
+
+    @Before
+    public void setUp() {
+        intersection = new Intersection();
+    }
 
     @Before
     public void before() {
@@ -37,7 +40,7 @@ public class IntersectionTest {
     }
 
     @Test
-    public void solve1() throws Exception {
+    public void solve1() {
         // given
 
         // when
@@ -50,7 +53,7 @@ public class IntersectionTest {
     }
 
     @Test
-    public void solve2() throws Exception {
+    public void solve2() {
         // given
 
         // when
@@ -63,7 +66,7 @@ public class IntersectionTest {
     }
 
     @Test
-    public void solve3() throws Exception {
+    public void solve3() {
         // given
 
         // when
