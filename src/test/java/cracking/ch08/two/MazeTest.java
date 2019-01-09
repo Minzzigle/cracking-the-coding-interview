@@ -14,7 +14,7 @@ public class MazeTest {
 	private Maze maze = new Maze();
 
 	@Test
-	public void find() throws Exception {
+	public void find() {
 		// given
 		maze.maxX = 2;
 		maze.maxY = 2;
