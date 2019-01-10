@@ -29,6 +29,18 @@ public class SameAncestorFinderTest {
     }
 
     @Test
+    public void findOnHasParentPath2() {
+        // given
+        TreeNode head = makeTreeWithParents();
+
+        // when
+		TreeNode result = sameAncestorFinder.findOnHasParentPath2(head, firstNode, secondNode);
+
+        // then
+        assertThat(result.data, is(1));
+    }
+
+    @Test
     public void find_부모로가는루트가없는경우() {
         // given
         TreeNode head = makeTree();
@@ -37,8 +49,9 @@ public class SameAncestorFinderTest {
         TreeNode result = sameAncestorFinder.find(head, firstNode, secondNode);
 
         // then
-        assertThat(result.data, is(4));
+        assertThat(result.data, is(1));
     }
+
 
     private TreeNode makeTree() {
         TreeNode node1 = new TreeNode(1);
@@ -60,7 +73,6 @@ public class SameAncestorFinderTest {
         node3.rightChild = node7;
 
         node4.leftChild = node8;
-        node8.parent = node4;
 
         firstNode = node2;
         secondNode = node6;
