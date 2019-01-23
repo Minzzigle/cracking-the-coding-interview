@@ -10,10 +10,12 @@ import java.util.List;
  * @since 2018. 01. 12.
  */
 public class Maze {
-	public boolean [][] maze;
+	boolean [][] maze;
+	boolean [][] alreadyVisited;
 
 	public Maze(boolean[][] maze) {
 		this.maze = maze;
+		this.alreadyVisited = new boolean[maze.length][maze[0].length];
 	}
 
 	public List<Point> getPath() {
@@ -36,7 +38,12 @@ public class Maze {
 
 		boolean isOrigin = row == 0 && col == 0;
 
+		if(alreadyVisited[row][col]) {
+			return false;
+		}
+
 		if(isOrigin || find(row - 1, col, path) || find(row, col - 1, path)) {
+			alreadyVisited[row][col] = true;
 			path.add(new Point(row, col));
 			return true;
 		}

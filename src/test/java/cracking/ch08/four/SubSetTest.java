@@ -17,7 +17,7 @@ public class SubSetTest {
 	private SubSet subSet = new SubSet();
 
 	@Test
-	public void print() throws Exception {
+	public void print() {
 		// given
 
 		// when

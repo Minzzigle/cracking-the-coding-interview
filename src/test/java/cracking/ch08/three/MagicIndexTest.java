@@ -15,7 +15,7 @@ public class MagicIndexTest {
 	private MagicIndex magicIndex = new MagicIndex();
 
 	@Test
-	public void find() throws Exception {
+	public void find() {
 		// given
 		int [] arr = {-1,0,1,2,4,7};
 
@@ -27,7 +27,7 @@ public class MagicIndexTest {
 	}
 
 	@Test
-	public void find_대상이_없음() throws Exception {
+	public void find_대상이_없음() {
 		// given
 		int [] arr = {-1,0,1,2,3,7};
 
