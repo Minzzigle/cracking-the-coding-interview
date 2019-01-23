@@ -1,5 +1,8 @@
 package cracking.ch08.two;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Maze
  *
@@ -7,31 +10,52 @@ package cracking.ch08.two;
  * @since 2018. 01. 12.
  */
 public class Maze {
-	public boolean [][] blocks;
-	public int maxX;
-	public int maxY;
+	public boolean [][] maze;
 
-	public void find(int nowX, int nowY, String result) {
-		if(nowX == maxX && nowY == maxY) {
-			result += makeFormat(nowX, nowY);
-			System.out.println(result);
-			return;
-		}
-
-		boolean right = nowY < maxY ? blocks[nowX][nowY + 1] : false;
-		boolean down = nowX < maxX ? blocks[nowX + 1][nowY] : false;
-
-		String nowPos = makeFormat(nowX, nowY);
-		if(right) {
-			find(nowX, nowY + 1, result + nowPos);
-		}
-
-		if(down) {
-			find(nowX +1, nowY, result + nowPos);
-		}
+	public Maze(boolean[][] maze) {
+		this.maze = maze;
 	}
 
-	private String makeFormat(int r, int c) {
-		return "(" + r +"," + c + ")";
+	public List<Point> getPath() {
+		if(maze == null || maze.length == 0) {
+			return null;
+		}
+
+		List<Point> path = new ArrayList<>();
+		if(find(maze.length - 1, maze[0].length - 1, path)) {
+			return path;
+		}
+
+		return null;
+	}
+
+	private boolean find(int row, int col, List<Point> path) {
+		if(row < 0 || col < 0 || !maze[row][col]) {
+			return false;
+		}
+
+		boolean isOrigin = row == 0 && col == 0;
+
+		if(isOrigin || find(row - 1, col, path) || find(row, col - 1, path)) {
+			path.add(new Point(row, col));
+			return true;
+		}
+
+		return false;
+	}
+
+	class Point {
+		int row;
+		int col;
+
+		public Point(int row, int col) {
+			this.row = row;
+			this.col = col;
+		}
+
+		@Override
+		public String toString() {
+			return "(" + row + "," + col + ")";
+		}
 	}
 }
