@@ -6,13 +6,15 @@ import java.util.LinkedList;
 
 public class FindPath {
     public boolean solve(Graph g, Node start, Node end) {
-        if(start == null || end == null) {
+        if(g == null || start == null || end == null) {
             return false;
         }
 
-        for(Node n : g.nodes) {
-            n.visited = VisitedType.UNDEFINED;
+        if(g.nodes == null || g.nodes.length < 2) {
+            return false;
         }
+
+        initializeGraph(g);
 
         LinkedList<Node> queue = new LinkedList<>();
         queue.add(start);
@@ -31,5 +33,11 @@ public class FindPath {
         }
 
         return false;
+    }
+
+    private void initializeGraph(Graph g) {
+        for(Node n : g.nodes) {
+            n.visited = VisitedType.UNDEFINED;
+        }
     }
 }

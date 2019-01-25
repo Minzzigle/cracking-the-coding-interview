@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -31,16 +32,36 @@ public class NodeConnectTest {
     }
 
     @Test
-    public void connect() throws Exception {
+    public void connect() {
         // given
 
         // when
-        List<Node> result = nodeConnect.connect(head);
+        List<List<Node>> result = nodeConnect.connect(head);
 
         // then
-        assertThat(result.get(0), is(head));
-        assertThat(result.get(1), is(head.children[0]));
-        assertThat(result.get(2), is(head.children[0].children[0]));
+        assertThat(listToString(result.get(0)), is("1"));
+        assertThat(listToString(result.get(1)), is("2,3"));
+        assertThat(listToString(result.get(2)), is("4,5,6,7"));
     }
 
+    @Test
+    public void connect_초기루트가NULL인경우() {
+        // given
+
+        // when
+        List<List<Node>> result = nodeConnect.connect(null);
+
+        // then
+        assertThat(result.size(), is(0));
+    }
+
+    private String listToString(List<Node> eachList) {
+        StringJoiner joiner = new StringJoiner(",");
+
+        for(Node each : eachList) {
+            joiner.add(each.name);
+        }
+
+        return joiner.toString();
+    }
 }

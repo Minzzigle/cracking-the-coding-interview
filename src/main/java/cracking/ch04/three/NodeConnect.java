@@ -8,44 +8,29 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class NodeConnect {
-    public List<Node> connect(Node head) {
-        if(head == null) {
-            return Collections.EMPTY_LIST;
-        }
-
-        LinkedList<Node> queue = new LinkedList<>();
-        queue.add(head);
-
-        List<Node> result = new ArrayList<>();
-
-        while(!queue.isEmpty()) {
-            Node n = toLinkedList(queue);
-            result.add(n);
-
-            Node listHead = n;
-
-            while(listHead != null) {
-                for(int i = 0; i<listHead.children.length; i++) {
-                    queue.add(listHead.children[i]);
-                }
-                listHead = listHead.next;
-            }
-        }
+    public List<List<Node>> connect(Node root) {
+        List<List<Node>> result = new ArrayList<>();
+        connect(root, result, 0);
 
         return result;
     }
 
-    private Node toLinkedList(LinkedList<Node> queue) {
-        Node head = queue.peekFirst();
-        Node pre = null;
-        while(!queue.isEmpty()) {
-            Node node = queue.remove();
-            if(pre != null) {
-                pre.next= node;
-            }
-            pre = node;
+
+    public void connect(Node root, List<List<Node>> nodeList, int level) {
+        if(root == null) {
+            return;
         }
 
-        return head;
+        List<Node> linkedList;
+        if(nodeList.size() == level) {
+            linkedList = new LinkedList<>();
+            nodeList.add(linkedList);
+        } else {
+            linkedList = nodeList.get(level);
+        }
+
+        linkedList.add(root);
+        connect(root.children[0], nodeList, level + 1);
+        connect(root.children[1], nodeList, level + 1);
     }
 }

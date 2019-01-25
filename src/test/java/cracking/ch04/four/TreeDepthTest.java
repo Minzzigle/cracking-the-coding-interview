@@ -23,7 +23,7 @@ public class TreeDepthTest {
 	}
 
 	@Test
-	public void checkBalanced_false() throws Exception {
+	public void checkBalanced_false() {
 		// given
 		Node head = makeUnbalancedTree();
 
@@ -35,7 +35,7 @@ public class TreeDepthTest {
 	}
 
 	@Test
-	public void checkBalanced_true() throws Exception {
+	public void checkBalanced_true() {
 		// given
 		Node head = makeBalancedTree();
 
@@ -84,4 +84,25 @@ public class TreeDepthTest {
 		return node1;
 	}
 
+	@Test
+	public void isBalancedTree_트리가균형잡힌경우() {
+		// given
+
+		// when
+		boolean result = treeDepth.isBalancedTree(makeBalancedTree());
+
+		// then
+		assertThat(result, is(true));
+	}
+
+	@Test
+	public void isBalancedTree_트리가균형잡히지않은경우() {
+		// given
+
+		// when
+		boolean result = treeDepth.isBalancedTree(makeUnbalancedTree());
+
+		// then
+		assertThat(result, is(false));
+	}
 }
