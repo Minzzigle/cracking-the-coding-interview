@@ -1,7 +1,6 @@
 package cracking.ch08.one;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * Step
@@ -11,24 +10,24 @@ import java.util.List;
  * @since 2018. 01. 10.
  */
 public class Step {
-	public void step(int remain, List<Integer> step) {
-		if(remain == 0) {
-			printStep(step);
-			return;
-		}
-		for(int j = 1; j< 4; j++) {
-			if(remain - j >= 0) {
-				List<Integer> s = new ArrayList<>(step);
-				s.add(j);
-				step(remain - j, s);
-			}
+    int [] cache;
+
+	public Step(int size) {
+		this.cache = new int[size];
+		Arrays.fill(cache, -1);
+	}
+
+	public int step(int remain) {
+		if(remain < 0) {
+			return 0;
+		} else if(remain == 0) {
+			return 1;
+		} else if(cache[remain] != -1) {
+			return cache[remain];
+		} else {
+			cache[remain] = step(remain - 3) + step(remain - 2) + step(remain - 1);
+			return cache[remain];
 		}
 	}
 
-	private void printStep(List<Integer> step) {
-		for(int i = 0; i<step.size(); i++) {
-			System.out.print(step.get(i) + " ");
-		}
-		System.out.println("");
-	}
 }

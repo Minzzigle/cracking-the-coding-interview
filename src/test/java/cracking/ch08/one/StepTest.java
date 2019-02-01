@@ -1,9 +1,8 @@
 package cracking.ch08.one;
 
-import java.util.ArrayList;
-
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 /**
@@ -13,17 +12,17 @@ import static org.junit.Assert.*;
  * @since 2018. 01. 10.
  */
 public class StepTest {
-	private Step step = new Step();
+	private Step step = new Step(40);
 
 	@Test
-	public void step() throws Exception {
+	public void step() {
 		// given
 
 		// when
-		step.step(10, new ArrayList<>());
+		int result = step.step(3);
 
 		// then
-
+		assertThat(result, is(4));
 	}
 
 }
