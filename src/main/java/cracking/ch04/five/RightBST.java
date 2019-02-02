@@ -3,35 +3,43 @@ package cracking.ch04.five;
 import cracking.ch04.TreeNode;
 
 public class RightBST {
-    public int checkBST (TreeNode root){
-        if (root == null) {
-            return 0;
-        }
-        System.out.println("root" + root.data);
-        TreeNode leftChild = root.getLeftChild();
 
-        if (leftChild == null) {
-            return 0;
-        }
-        int currentData = root.getData();
-        if (leftChild.getData() > currentData) {
-            return -1;
+    private Integer pre = null;
+
+    public boolean isBSTWithInorderTraversal(TreeNode root) {
+        if(root == null) {
+            return true;
         }
 
-        TreeNode rightChild = root.getRightChild();
-        if (rightChild == null) {
-            return 0;
-        }
-        if (rightChild.getData() < currentData) {
-            return -1;
+        boolean leftResult = isBSTWithInorderTraversal(root.leftChild);
+
+        if(pre == null) {
+            pre = root.data;
+        } else if(root.data < pre){
+            return false;
+        } else {
+            pre = root.data;
+            return true;
         }
 
-        int leftResult = checkBST(leftChild);
-        int rightResult = checkBST(rightChild);
+        boolean rightResult = isBSTWithInorderTraversal(root.rightChild);
 
-        if (leftResult < 0 || rightResult < 0) {
-            return -1;
+        return leftResult && rightResult;
+    }
+
+    public boolean isBSTWithRecursive(TreeNode root, Integer minimum, Integer maximum) {
+        if(root == null) {
+            return true;
         }
-        return 0;
+
+        if(minimum != null && minimum > root.data) {
+            return false;
+        }
+
+        if(maximum != null && maximum < root.data) {
+            return false;
+        }
+
+        return isBSTWithRecursive(root.leftChild, minimum, root.data) && isBSTWithRecursive(root.rightChild, root.data, maximum);
     }
 }

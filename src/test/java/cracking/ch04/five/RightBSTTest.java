@@ -1,17 +1,21 @@
 package cracking.ch04.five;
 
 import cracking.ch04.TreeNode;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class RightBSTTest {
-    RightBST bst = new RightBST();
+    private RightBST bst;
 
-    TreeNode bst () {
+    @Before
+    public void setUp() {
+        bst = new RightBST();
+    }
+
+    private TreeNode makeBST () {
         TreeNode root = new TreeNode(5);
         TreeNode a = new TreeNode(3);
         TreeNode b = new TreeNode(7);
@@ -30,7 +34,7 @@ public class RightBSTTest {
         return root;
     }
 
-    TreeNode wrongBst () {
+    private TreeNode makeWrongBST () {
         TreeNode root = new TreeNode(5);
         TreeNode a = new TreeNode(3);
         TreeNode b = new TreeNode(7);
@@ -50,12 +54,51 @@ public class RightBSTTest {
     }
 
     @Test
-    public void checkBSTtest() throws Exception {
-        RightBST bst = new RightBST();
-        //assertEquals(0, bst.checkBST(bst()));
-
-        assertEquals(-1 , bst.checkBST(wrongBst()));
-        
+    public void checkBST() {
+        assertThat(true, is(bst.isBSTWithInorderTraversal(makeBST())));
     }
 
+    @Test
+    public void checkBST_BST가아닌경우() {
+        // given
+
+        // when
+        boolean result= bst.isBSTWithInorderTraversal(makeWrongBST());
+
+        // then
+        assertThat(result, is(false));
+    }
+
+    @Test
+    public void checkBST_Root로NULL이들어오는경우() {
+        // given
+
+        // when
+        boolean result = bst.isBSTWithInorderTraversal(null);
+
+        // then
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void isBSTWITHRecursive_BST인경우() {
+        // given
+
+        // when
+        boolean result = bst.isBSTWithRecursive(makeBST(), null, null);
+
+        // then
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void isBSTWITHRecursive_BST가아닌경우() {
+        // given
+
+        // when
+        boolean result = bst.isBSTWithRecursive(makeWrongBST(), null, null);
+
+        // then
+        assertThat(result, is(false));
+    }
 }
