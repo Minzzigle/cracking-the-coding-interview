@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class PermutationTest {
     @Test
-    public void permutation() throws Exception {
+    public void permutation() {
         Permutation permutation = new Permutation();
         permutation.perm("abc");
     }

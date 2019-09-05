@@ -1,5 +1,6 @@
 package cracking.pre;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -13,10 +14,15 @@ import static org.junit.Assert.*;
  */
 public class QuickSortTest {
 
-	private QuickSort quickSort = new QuickSort();
+	private QuickSort quickSort;
+
+	@Before
+	public void before() {
+		quickSort = new QuickSort();
+	}
 
 	@Test
-	public void sort() throws Exception {
+	public void sort() {
 		// given
 		int [] arr = {2, 3, 1};
 
@@ -26,5 +32,17 @@ public class QuickSortTest {
 		// then
 		int [] expected = {1, 2, 3};
 		assertThat(arr, is(expected));
+	}
+
+	@Test
+	public void sort_빈배열이들어오는경우() {
+		// given
+		int[] arr = {};
+
+		// when
+		quickSort.sort(arr, 0, 0);
+
+		// then
+		assertThat(arr, is(arr));
 	}
 }
